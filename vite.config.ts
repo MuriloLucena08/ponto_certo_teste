@@ -47,6 +47,7 @@ export default defineConfig({
     include: ['react-safe-area-component'],
   },
   build: {
+    chunkSizeWarningLimit: 1000,
     commonjsOptions: {
       transformMixedEsModules: true,
     },
