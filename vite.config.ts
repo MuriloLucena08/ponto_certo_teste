@@ -17,7 +17,7 @@ export default defineConfig({
       'ponto-certo-teste.onrender.com', // Adiciona o seu domínio do Render
       '.onrender.com'                   // Ou libera qualquer subdomínio do Render (mais prático)
     ],
-    port: Number(process.env.PORT) || 4173 || 10000, // Garante que o Vite use a porta do Render
+    port: Number(process.env.PORT) || 10000, // Garante que o Vite use a porta do Render
     host: '0.0.0.0'                         // Necessário para o Render enxergar o app
   },
   plugins: [react(),
@@ -73,6 +73,13 @@ export default defineConfig({
     },
   },
   server: {
-    port: 3000,
+    proxy: {
+      'api-semob': {
+        target: 'http://dados.semob.df.gov.br',
+        changeOrigin: true,
+        secure: false,
+        rewrite: (path) => path.replace(/^\/api-semob/, '')
+      }
+    }
   }
 });
