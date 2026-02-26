@@ -43,6 +43,14 @@ export default defineConfig({
       }
     })
   ],
+  optimizeDeps : {
+    include: ['react-safe-area-component'],
+  },
+  build: {
+    commonjsOptions: {
+      transformMixedEsModules: true,
+    },
+  },
   server: {
     port: 3000,
   }

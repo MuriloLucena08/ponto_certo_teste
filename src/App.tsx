@@ -8,7 +8,7 @@ import {ParadasBancoPage} from './pages/ParadasBanco/ParadasBancoPage';
 import {SobrePage} from './pages/Sobre/SobrePage';
 import { PontoProvider } from './context/PontoContext';
 import { AuthProvider, useAuth } from './context/AuthContext';
-import { SafeArea } from 'react-safe-area-component';
+import * as SafeAreaModule from 'react-safe-area-component';
 
 // Protected Route Wrapper
 const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
@@ -18,12 +18,14 @@ const ProtectedRoute = ({ children }: { children: JSX.Element }) => {
     return children;
 };
 
+const SafeArea = (SafeAreaModule as any).SafeArea || (SafeAreaModule as any).default || SafeAreaModule;
+
 export function App() {
     return (
         <BrowserRouter>
             <AuthProvider>
                 <PontoProvider>
-                    <SafeArea top bottom left right>
+                    <SafeArea top bottom>
                         <Routes>
                             <Route path="/login" element={<Login />} />
 

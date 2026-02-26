@@ -11,5 +11,5 @@ declare module 'react-safe-area-component' {
         style?: React.CSSProperties;
     }
 
-    export const SafeArea: ComponentType<SafeAreaProps>;
+    export  const SafeArea: ComponentType<SafeAreaProps>;
 }
