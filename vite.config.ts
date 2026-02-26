@@ -5,6 +5,13 @@ import { VitePWA } from 'vite-plugin-pwa';
 // https://vitejs.dev/config/
 export default defineConfig({
   preview: {
+    proxy: {
+      '/api-semob': {
+        target: 'http://dados.semob.df.gov.br',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api-semob/, '')
+      }
+    },
     allowedHosts: [
       'ponto-certo-teste.onrender.com', // Adiciona o seu domínio do Render
       '.onrender.com'                   // Ou libera qualquer subdomínio do Render (mais prático)

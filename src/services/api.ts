@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export const api = axios.create({
-    baseURL: 'http://dados.semob.df.gov.br', // production URL
+    baseURL: '/api-semob', // production URL
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json',
