@@ -11,6 +11,10 @@ export default defineConfig({
         enabled: true
       },
       workbox: {
+        // 1. Adicione o limite aqui (ex: 6MB) para o build não quebrar
+        maximumFileSizeToCacheInBytes: 6 * 1024 * 1024,
+
+       // 2. Mantenha seu runtimeCaching logo abaixo
         runtimeCaching: [
           // Estratégia de Cache para os Tiles do OpenStreetMap
           {
