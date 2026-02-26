@@ -4,6 +4,14 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  preview: {
+    allowedHosts: [
+      'ponto-certo-teste.onrender.com', // Adiciona o seu domínio do Render
+      '.onrender.com'                   // Ou libera qualquer subdomínio do Render (mais prático)
+    ],
+    port: Number(process.env.PORT) || 4173 || 10000, // Garante que o Vite use a porta do Render
+    host: '0.0.0.0'                         // Necessário para o Render enxergar o app
+  },
   plugins: [react(),
     VitePWA({
       registerType: 'autoUpdate',
