@@ -9,6 +9,7 @@ export default defineConfig({
       '/api-semob': {
         target: 'http://dados.semob.df.gov.br',
         changeOrigin: true,
+        secure: false,
         rewrite: (path) => path.replace(/^\/api-semob/, '')
       }
     },
