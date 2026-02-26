@@ -1,0 +1,9 @@
+export { api } from './api';
+export { AuthService } from './auth';
+export { PointsService } from './points';
+export { RemotePointsService } from './remotePoints';
+export { db } from './db';
+export { AddressService } from './address';
+export { ViaService } from './via';
+export { RAService } from './ra';
+export { BaciaService } from './bacia';
