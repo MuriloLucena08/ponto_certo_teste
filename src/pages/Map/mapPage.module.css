@@ -10,18 +10,18 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 10;
-    background: white;
+    background: var(--white);
     padding: 2rem;
     border-radius: 0.8rem;
 }
 
 .controls {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 1.25rem;
+    right: 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem;
     z-index: 400;
     /* Leaflet has 400 by default for controls */
 }
@@ -56,40 +56,40 @@
 
 .bottomBar {
     position: absolute;
-    bottom: 80px;
+    bottom: 20rem;
     /* Above BottomNav */
     left: 0;
     width: 100%;
-    padding: 20px;
+    padding: 1.25rem;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.625rem;
     z-index: 400;
     align-items: center;
 }
 
 .actionButton {
     width: 100%;
-    max-width: 300px;
-    padding: 15px;
+    max-width: 18.75rem;
+    padding: 0.9375rem;
     background: linear-gradient(90deg, var(--primary-color), var(--success-color));
-    color: white;
-    border-radius: 30px;
-    font-size: 18px;
+    color: var(--white);
+    border-radius: 1.875rem;
+    font-size: 1.125rem;
     font-weight: bold;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 0.25rem 0.625rem rgba(0, 0, 0, 0.3);
 }
 
 .actionButton:disabled {
-    background: #ccc;
+    background: var(--disabled-color);
     cursor: not-allowed;
 }
 
 .secondaryButton {
-    background-color: #555;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 20px;
+    background-color: var(--secondary-color);
+    color: var(--white);
+    padding: 0.625rem 1.25rem;
+    border-radius: 1.25rem;
 }
 
 .emojiIcon {
