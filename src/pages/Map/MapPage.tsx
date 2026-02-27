@@ -112,6 +112,7 @@ export const MapPage = () => {
                 maxZoom={18}
                 maxBounds={[[-16.15, -48.35], [-15.45, -47.25]]}
                 maxBoundsViscosity={1.0}
+                zoomControl={false}
                 style={{ height: '100%', width: '100%' }}
             >
                 <MapController center={mapCenter} flyToCounter={flyToCounter} />
