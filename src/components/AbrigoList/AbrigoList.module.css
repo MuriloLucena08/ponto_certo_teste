@@ -69,7 +69,7 @@
 }
 
 .field label {
-    display: block;
+    display: flex;
     margin-bottom: 0.8rem;
 }
 
