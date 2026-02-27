@@ -9,7 +9,7 @@ import { MdSatellite, MdOutlinePlace, MdLocationPin } from 'react-icons/md';
 import { BiSolidTrashAlt } from 'react-icons/bi';
 import { useMapPage } from '../../hooks/useMapPage';
 import { useEffect } from 'react';
-
+import userLocation from '@assets/images/user_location.png'
 import iconMarker from 'leaflet/dist/images/marker-icon.png';
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -28,7 +28,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 // Custom Icons
 const UserIcon = L.icon({
-    iconUrl: '/src/assets/images/user_location.png',
+    iconUrl: userLocation,
     iconSize: [40, 40],
     iconAnchor: [20, 20]
 });
