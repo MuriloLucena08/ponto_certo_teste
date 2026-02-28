@@ -1,4 +1,4 @@
-import { MapContainer, TileLayer, Marker, Popup, GeoJSON, ZoomControl, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, GeoJSON, useMap } from 'react-leaflet';
 import styles from './paradasBanco.module.css';
 import L from 'leaflet';
 import MarkerClusterGroup from 'react-leaflet-cluster';
