@@ -1,11 +1,11 @@
 import { IAbrigo } from '../../types/Ponto';
 import styles from './AbrigoList.module.css';
-import { ABRIGO_TYPES } from '../../data/abrigoTypes';
 import { IoAdd, IoHome } from 'react-icons/io5';
 import { BiSolidTrashAlt } from 'react-icons/bi';
 import { Switch } from '../Commons/Switch/Switch';
 import { Section } from '../Commons/Section/Section';
 import { ImagePicker } from '../Commons/ImagePicker/ImagePicker';
+import { AbrigoTypeSelector } from '../AbrigoTypeSelector/AbrigoTypeSelector';
 
 interface AbrigoListProps {
     abrigos: IAbrigo[];
@@ -59,16 +59,10 @@ export const AbrigoList = ({ abrigos, setAbrigos }: AbrigoListProps) => {
                         {/* Type Selector */}
                         <div className={styles.field}>
                             <label className={styles.fieldLabel}>Tipo de Abrigo</label>
-                            <select
-                                value={abrigo.idTipoAbrigo || ''}
-                                onChange={(e) => updateAbrigo(index, 'idTipoAbrigo', parseInt(e.target.value))}
-                                className={styles.select}
-                            >
-                                <option value="">Selecione...</option>
-                                {ABRIGO_TYPES.map(t => (
-                                    <option key={t.id} value={t.id}>{t.name}</option>
-                                ))}
-                            </select>
+                            <AbrigoTypeSelector
+                                selectedValue={abrigo.idTipoAbrigo}
+                                onChange={(value) => updateAbrigo(index, 'idTipoAbrigo', value)}
+                            />
                         </div>
 
                         {/* Image Picker */}

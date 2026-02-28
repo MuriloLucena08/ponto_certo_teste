@@ -120,7 +120,7 @@ export const ParadasBancoPage = () => {
                     className={styles.map}
                     zoomControl={false}
                 >
-                    <ZoomControl position="topright" />
+                    {/* <ZoomControl position="topright" /> */}
                     <TileLayer
                         url={showSatellite
                             ? 'https://mt1.google.com/vt/lyrs=s&x={x}&y={y}&z={z}'
