@@ -44,7 +44,6 @@ export const FormularioPage = () => {
         pisoTatil,
         setPisoTatil,
         dataVisita,
-        setDataVisita,
         abrigos,
         setAbrigos,
         loading,
@@ -94,14 +93,14 @@ export const FormularioPage = () => {
                         <label><h3 style={{ margin: 0 }}>Data e Hora da Visita</h3></label>
                         <DatePicker
                             selected={dataVisita}
-                            onChange={(date: Date | null) => setDataVisita(date)}
+                            onChange={() => {}}
+                            readOnly
                             showTimeSelect
                             timeFormat="HH:mm"
                             timeIntervals={15}
                             dateFormat="dd/MM/yyyy ' às ' HH:mm"
                             locale="pt-BR"
                             className={styles.input}
-                            placeholderText="Selecione a data e hora"
                             timeCaption="Hora"
                         />
                     </div>

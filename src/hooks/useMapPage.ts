@@ -77,7 +77,7 @@ export const useMapPage = () => {
     const handleConfirmPonto = async () => {
         if (!selectedPoint) return;
         setConfirmedPoint(selectedPoint);
-
+        loadVias(selectedPoint);
         try {
             const addr = await AddressService.getAddress(selectedPoint.lat, selectedPoint.lng);
             console.log('Endereço', addr);
@@ -104,6 +104,7 @@ export const useMapPage = () => {
         setConfirmedPoint(null);
         setInterpolatedPoint(null);
         setViaConfirmada(false);
+        setPolylines([]);
     };
 
     const handleCadastrar = () => {
@@ -117,7 +118,7 @@ export const useMapPage = () => {
             if (userLocation) {
                 setMapCenter({ ...userLocation });
                 setFlyToCounter(c => c + 1);
-                loadVias(userLocation);
+                // loadVias(userLocation);
             }
             return;
         }
@@ -127,14 +128,14 @@ export const useMapPage = () => {
                 setUserLocation(loc);
                 setMapCenter(loc);
                 setFlyToCounter(c => c + 1);
-                loadVias(loc);
+                // loadVias(loc);
             },
             () => {
                 // Permissão negada — usa última localização conhecida
                 if (userLocation) {
                     setMapCenter({ ...userLocation });
                     setFlyToCounter(c => c + 1);
-                    loadVias(userLocation);
+                    // loadVias(userLocation);
                 }
             },
             { enableHighAccuracy: true, timeout: 10000 }

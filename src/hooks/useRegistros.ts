@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePonto } from '../context/PontoContext';
+import { IPonto } from '../types/Ponto';
+import { PointsService } from '../services/points';
 
 export const useRegistros = () => {
-    const { pontos, syncPontos, pendingCount, removePonto } = usePonto() as any;
+    const { pontos, pendingCount, removePonto, updatePonto, setSyncMessage } = usePonto() as any;
     const [syncing, setSyncing] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const [deleteId, setDeleteId] = useState<any>(null);
@@ -11,22 +13,50 @@ export const useRegistros = () => {
     const navigate = useNavigate();
 
     const handleSync = async () => {
-         if (pendingCount === 0) return;
+        const pontosParaSincronizar: IPonto[] = pontos.filter((p: IPonto) => p.syncStatus === 'pending');
 
-         setSyncing(true);
-        const startTime = Date.now();
-
-         await syncPontos();
-
-        const elapsedTime = Date.now() - startTime;
-        const minDisplayTime = 2000; // 2 seconds
-
-        if (elapsedTime < minDisplayTime) {
-            const remainingTime = minDisplayTime - elapsedTime;
-            setTimeout(() => setSyncing(false), remainingTime);
-        } else {
-            setSyncing(false);
+        if (pontosParaSincronizar.length === 0) {
+            setSyncMessage('Nenhuma parada pendente para sincronizar.');
+            setTimeout(() => setSyncMessage(null), 3000);
+            return;
         }
+
+        setSyncing(true);
+        let sucesso = 0;
+        let falha = 0;
+
+        for (const [index, ponto] of pontosParaSincronizar.entries()) {
+            try {
+                const enviado = await PointsService.createPoint(ponto);
+                if (enviado) {
+                    await updatePonto({ ...ponto, syncStatus: 'synced' });
+                    sucesso++;
+                } else {
+                    throw new Error('A API não retornou sucesso (status != 201)');
+                }
+            } catch (error) {
+                console.error(`Falha ao sincronizar a parada ${ponto.id}:`, error);
+                falha++;
+            }
+
+            // Adiciona uma pausa de 3 segundos entre cada envio, exceto para o último
+            if (index < pontosParaSincronizar.length - 1) {
+                await new Promise(resolve => setTimeout(resolve, 3000));
+            }
+        }
+
+        setSyncing(false);
+
+        let finalMessage = '';
+        if (falha === 0) {
+            finalMessage = 'Todas as paradas foram sincronizadas com sucesso!';
+        } else if (sucesso === 0) {
+            finalMessage = 'Falha ao sincronizar todas as paradas.';
+        } else {
+            finalMessage = `${sucesso} parada(s) sincronizada(s). ${falha} falharam.`;
+        }
+        setSyncMessage(finalMessage);
+        setTimeout(() => setSyncMessage(null), 5000);
      };
 
     const handleEdit = (ponto: any) => {
