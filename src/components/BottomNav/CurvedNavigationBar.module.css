@@ -3,7 +3,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 80px;
+    height: 8rem;
     background-color: transparent;
     z-index: 1000;
 }
@@ -38,9 +38,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
-    color: white;
+    width: 6rem;
+    height: 6rem;
+    color: var(--white);
     transition: all 0.3s ease;
     position: relative;
 }
@@ -50,8 +50,8 @@
 }
 
 .navButton.active .iconWrapper {
-    transform: translateY(-25px); /* Move o ícone para cima */
-    color: #ffffff; /* Altera a cor do ícone ativo */
+    transform: translateY(-2.5rem); /* Move o ícone para cima */
+    color: var(--white); /* Altera a cor do ícone ativo */
 }
 
 .activeButtonBg {
@@ -59,10 +59,10 @@
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 50px;
-    height: 50px;
+    width: 5rem;
+    height: 5rem;
     border-radius: 50%;
-    background-color: white;
+    background-color: var(--white);
     opacity: 0;
     transition: all 0.3s ease;
 }
