@@ -1,5 +1,5 @@
 [[redirects]]
   from = "/api-semob/*"
-  to = "http://dadoshlog.semob.gdfnet.df/pcp/:splat"
+  to = "http://dadoshlog.semob.gdfnet.df:8080/pcp/:splat"
   status = 200
   force = true
