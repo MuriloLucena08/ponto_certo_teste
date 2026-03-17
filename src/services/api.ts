@@ -4,8 +4,7 @@ export const api = axios.create({
     baseURL: "/api-semob",
     timeout: 10000,
     headers: {
-        'Content-Type': 'application/json',
-        'ngrok-skip-browser-warning': 'true'
+        'Content-Type': 'application/json'
     },
 });
 
