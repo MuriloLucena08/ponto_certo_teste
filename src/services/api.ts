@@ -1,7 +1,9 @@
 import axios from 'axios';
 
+const apiSemob = import.meta.env.VITE_API_PROXY;
+
 export const api = axios.create({
-    baseURL: "/api-semob",
+    baseURL: apiSemob,
     timeout: 10000,
     headers: {
         'Content-Type': 'application/json'

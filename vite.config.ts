@@ -1,17 +1,24 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  preview: {
+export default defineConfig(({mode}) => {
+  
+  const env = loadEnv(mode, process.cwd(), '');
+
+  const apiSemob = env.VITE_API_PROXY;
+  const url = env.VITE_API_URL;
+
+  return {
+    preview: {
     proxy: {
-      '/api-semob': {
-        target: 'http://dadoshlog.semob.gdfnet.df:8080/pcp/',
+      [apiSemob]: {
+        target: url,
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api-semob/, '')
+        rewrite: (path) => path.replace(new RegExp(`^${apiSemob}`), '')
       }
     },
     allowedHosts: [
@@ -80,13 +87,14 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      '/api-semob': {
-        target: 'http://dadoshlog.semob.gdfnet.df:8080/pcp/',
-
+      [apiSemob]: {
+        target: url,
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/api-semob/, '')
+        rewrite: (path) => path.replace(new RegExp(`^${apiSemob}`), '')
       }
     }
   }
+  }
+  
 });
